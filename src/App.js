@@ -13,7 +13,6 @@ export default function () {
           Created by Max & Saja {new Date().getFullYear()}
         </footer>
       </>
-
     );
   }
 
