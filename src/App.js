@@ -1,10 +1,15 @@
 // App.js
 import React, { Component, useEffect } from "react";
+import { useGithubUser } from "./hooks/useGithubUsers";
+import { Main } from "./components/Main";
+import { Profile } from "./components/Profile";
+import { Repo } from "./components/Repo";
 import { Search } from "./components/Search";
-import { Header } from "./components/Header";
-import { useGithubUser } from "./hooks/useGithubUser";
+import { SearchForm } from "./components/Repo";
 
 function App() {
+  const { user, repos, error, getUser } = useGithubUser;
+
   useEffect(() => {
     getUser("max-mackie");
   }, [user]);
@@ -18,9 +23,11 @@ function App() {
           <Profile name={user.name} image={user.avatar_url} bio={user.bio} />
         )}
         {repos && (
-          {repos.map(repo => {
-            return <Repo key={repo.id} {...repos} />;
-          })}
+          <>
+            {repos.map((repo) => {
+              return <Repo key={repo.id} {...repos} />;
+            })}
+          </>
         )}
       </Main>
     </>
