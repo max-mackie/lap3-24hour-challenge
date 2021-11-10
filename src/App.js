@@ -1,6 +1,5 @@
 // App.js
 import React, { Component, useEffect } from "react";
-import { Search } from "./components/Search";
 import { Header } from "./components/Header";
 import { useGithubUser } from "./hooks/useGithubUser";
 
@@ -11,6 +10,7 @@ function App() {
 
   return (
     <>
+      <Header></Header>
       <Search onSubmit={handleSubmit} />
       <Main>
         {error && <Alert />}
@@ -18,9 +18,11 @@ function App() {
           <Profile name={user.name} image={user.avatar_url} bio={user.bio} />
         )}
         {repos && (
-          {repos.map(repo => {
-            return <Repo key={repo.id} {...repos} />;
-          })}
+          {
+            repos.map(repo => {
+              return <Repo key={repo.id} {...repos} />;
+            })
+          }
         )}
       </Main>
     </>
