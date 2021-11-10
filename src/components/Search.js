@@ -1,52 +1,30 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
-export const Search = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [repos, setRepos] = useState([]);
+export const Search = ({ onSubmit, children }) => {
+  const [username, setUsername] = useState();
+  const [valid, setValid] = useState(true);
 
-  const clickHandler = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setInputValue(e.target.elements.query.value);
-  };
-
-  useEffect(() => {
-    if (!inputValue) {
+    if (!username) {
+      setValid(false);
+      alert("Please enter a username");
       return;
     }
-
-    fetch("https://api.github.com/search/repositories?q=" + inputValue)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setRepos(data.items);
-      });
-  }, [inputValue]);
-
-  console.log(repos);
+    onSubmit(username);
+  };
 
   return (
     <div>
-      <form onSubmit={clickHandler}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="query"
-          placeholder="Search Github Repositories"
+          placeholder="Enter a username"
+          onChange={(event) => setUsername(event.target.value)}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Search</button>
       </form>
-      <ul>
-        {repos.map((repo) => {
-          return (
-            <li key={repo.id}>
-              <a href={repo.html_url}>{repo.name}</a>
-              <p>{repo.description}</p>
-            </li>
-          );
-        })}
-      </ul>
     </div>
   );
 };

@@ -1,36 +1,20 @@
-import {Search} from '../components/Search'
+import React from "react";
+import { Header } from "../components/Header";
+import { Search } from "../components/Search";
+import { useGithubUser } from "../hooks/useGithubUsers";
 
 export function HomePage() {
-  
-    const { user, repos, error, getUser } = useGithubUser;
+  const { getUser } = useGithubUser();
 
-    useEffect(() => {
-      getUser("max-mackie");
-    }, [user]);
+  function handleSubmit(username) {
+    getUser(username);
+  }
 
-  
-    return (
+  return (
     <>
-    <Header></Header>
+      <Header></Header>
+      <h1>Welcome</h1>
       <Search onSubmit={handleSubmit} />
-      <Main>
-        {error && <Alert />}
-        {user && (
-          <Profile name={user.name} image={user.avatar_url} bio={user.bio} />
-        )}
-        {repos && (
-          <>
-            {repos.map((repo) => {
-              return <Repo key={repo.id} {...repos} />;
-            })}
-          </>
-        )}
-      </Main>
     </>
   );
 }
-
-function handleSubmit(username) {
-    getUser(username);
-  }
-  
