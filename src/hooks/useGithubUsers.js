@@ -29,6 +29,7 @@ export function useGithubUser(username) {
       .then((data) => !data.message && setRepos(data));
   };
 
+  console.log(user, repos, error);
   return { user, repos, error, getUser };
 }
 //

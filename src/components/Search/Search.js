@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './searchStyle.css'
 
 export const Search = ({ onSubmit, children }) => {
   const [username, setUsername] = useState();
@@ -15,7 +16,7 @@ export const Search = ({ onSubmit, children }) => {
   };
 
   return (
-    <div>
+    <div id='searchForm'>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

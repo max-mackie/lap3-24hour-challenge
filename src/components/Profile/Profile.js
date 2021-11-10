@@ -1,4 +1,5 @@
 import React from "react";
+import './profileStyle.css';
 
 export function Profile({ name, image, bio }) {
   return (

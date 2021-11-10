@@ -6,7 +6,7 @@ export function Repo({ name, description, html_url, watchers_count }) {
       <h1>{name}</h1>
       <div>
         <p>{description}</p>
-        <a href={html_url}>View Repo</a>
+        <a href={html_url} target="_blank">View Repo</a>
         <p>{watchers_count} Watchers</p>
       </div>
     </div>
