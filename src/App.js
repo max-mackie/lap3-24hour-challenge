@@ -8,7 +8,7 @@ import { Search } from "./components/Search";
 import { SearchForm } from "./components/Repo";
 
 function App() {
-  const { user, repos, error, getUser } = useGithubUser;
+  const { user, repos, error, getUser } = useGithubUser();
 
   useEffect(() => {
     getUser("max-mackie");
