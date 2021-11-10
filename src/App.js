@@ -1,35 +1,19 @@
 // App.js
 import React, { Component, useEffect } from "react";
-import { Header } from "./components/Header";
-import { useGithubUser } from "./hooks/useGithubUser";
 
-function App() {
-  useEffect(() => {
-    getUser("max-mackie");
-  }, [user]);
+export default function () {
+    
+    return (
+      <>
+        <Switch>
+          <Route exact path="/"><HomePage /></Route>
+          <Route path="/resultsPage"><ResultsPage /></Route>
+        </Switch>
+        <footer>
+          Created by Max & Saja {new Date().getFullYear()}
+        </footer>
+      </>
 
-  return (
-    <>
-      <Header></Header>
-      <Search onSubmit={handleSubmit} />
-      <Main>
-        {error && <Alert />}
-        {user && (
-          <Profile name={user.name} image={user.avatar_url} bio={user.bio} />
-        )}
-        {repos && (
-          {
-            repos.map(repo => {
-              return <Repo key={repo.id} {...repos} />;
-            })
-          }
-        )}
-      </Main>
-    </>
-  );
-}
-function handleSubmit(username) {
-  getUser(username);
-}
+    );
+  }
 
-export default App;
