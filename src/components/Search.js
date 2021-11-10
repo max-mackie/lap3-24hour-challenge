@@ -10,15 +10,19 @@ export const Search = () => {
     setInputValue(e.target.elements.query.value);
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!inputValue) {
       return;
     }
 
-    const data = await axios.get(
-      "https:api.github/com/search/repositories?q=" + inputValue
-    );
-    setRepos(data.items);
+    fetch("https://api.github.com/search/repositories?q=" + inputValue)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setRepos(data.items);
+      });
   }, [inputValue]);
 
   console.log(repos);
@@ -31,9 +35,10 @@ export const Search = () => {
           name="query"
           placeholder="Search Github Repositories"
         />
+        <button type="submit">Submit</button>
       </form>
       <ul>
-        {repos.map((repos) => {
+        {repos.map((repo) => {
           return (
             <li key={repo.id}>
               <a href={repo.html_url}>{repo.name}</a>
