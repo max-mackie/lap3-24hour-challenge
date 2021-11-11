@@ -12,5 +12,3 @@ export function Repo({ name, description, html_url, watchers_count }) {
     </div>
   );
 }
-
-//
