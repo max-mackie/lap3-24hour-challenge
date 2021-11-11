@@ -5,8 +5,9 @@ export function Profile({ name, image, bio }) {
   return (
     <div>
       <figure>
-        <img alt="Profile Icon" src={image} />
-        <h3>{name}</h3>
+      <h3 id='gName'>{name}</h3>
+      <img alt="Profile Icon" src={image} />
+ 
         <p>{bio}</p>
       </figure>
     </div>
