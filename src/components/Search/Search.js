@@ -19,11 +19,14 @@ export const Search = ({ onSubmit, children }) => {
     <div id='searchForm'>
       <form onSubmit={handleSubmit}>
         <input
+          id='inputForm'
           type="text"
           name="query"
-          placeholder="Enter a username"
+          placeholder="GitHub username"
           onChange={(event) => setUsername(event.target.value)}
         />
+        <br></br>
+        <br></br>
         <button type="submit">Search</button>
       </form>
     </div>
